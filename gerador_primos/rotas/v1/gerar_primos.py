@@ -4,8 +4,8 @@ from gerador_primos.modelos.gerar_primos import (EstadoGerarPrimosResponse,
                                                  GerarPrimosResponse)
 from gerador_primos.servicos.queue_manager import gerar_primos_task
 
-rota = APIRouter()
 
+rota = APIRouter()
 
 @rota.get("/{task_id}", response_model=EstadoGerarPrimosResponse)
 def buscar_estado(task_id: str):
