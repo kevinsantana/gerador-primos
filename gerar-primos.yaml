@@ -1,0 +1,49 @@
+version: "3"
+
+services:
+
+  web:
+    image: gerar_primos:1.0.0
+    restart: always
+    build:
+      context: .
+    container_name: gerar_primos_web
+    ports:
+      - "3000:3000"
+    depends_on:
+      - rabbit
+    volumes:
+      - .:/app
+    networks:
+      - backend
+
+  rabbit:
+    hostname: rabbit
+    image: rabbitmq:3-management
+    container_name: gerar_primos_rabbit
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbitmq
+      - RABBITMQ_DEFAULT_PASS=rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - backend
+
+  worker_gerar_primos:
+    image: gerar_primos:1.0.0
+    container_name: gerar_primos_worker
+    entrypoint: celery
+    command: -A gerador_primos.servicos.queue_manager worker -n primos@%h --loglevel=info -Q primos -c 1 --prefetch-multiplier=1
+    volumes:
+      - .:/app
+    links:
+      - rabbit
+    depends_on:
+      - rabbit
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
