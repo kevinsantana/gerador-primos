@@ -20,6 +20,7 @@ integration_test_requirements = [
     "pytest",
 ]
 run_requirements = [
+    'celery==4.3.0',
     "loguru==0.5.1",
     "uvicorn==0.11.5",
     "fastapi==0.58.0",
