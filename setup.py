@@ -22,7 +22,7 @@ integration_test_requirements = [
 run_requirements = [
     'celery==4.3.0',
     "loguru==0.5.1",
-    "uvicorn==0.11.5",
+    "uvicorn==0.11.7",
     "fastapi==0.58.0",
     "gunicorn==20.0.4",
     "requests==2.23.0",
