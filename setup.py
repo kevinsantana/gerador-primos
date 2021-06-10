@@ -23,7 +23,7 @@ run_requirements = [
     'celery==4.3.0',
     "loguru==0.5.1",
     "uvicorn==0.11.7",
-    "fastapi==0.58.0",
+    "fastapi==0.65.2",
     "gunicorn==20.0.4",
     "requests==2.23.0",
     "python-multipart==0.0.5",
